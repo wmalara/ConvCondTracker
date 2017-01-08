@@ -96,5 +96,11 @@ module.exports = {
         browsers: ['last 2 versions']
       })
     ]
+  },
+  worker: {
+    output: {
+      filename: "hash.worker.js",
+      chunkFilename: "[id].hash.worker.js"
+    }
   }
 }
