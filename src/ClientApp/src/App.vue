@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
+    <timer></timer>
     <metronome></metronome>
   </div>
 </template>
 
 <script>
+import Timer from './components/Timer.vue';
 import Metronome from './components/Metronome.vue';
 
 export default {
   name: 'app',
   components: {
+    Timer,
     Metronome,
   },
 };

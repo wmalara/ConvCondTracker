@@ -26,7 +26,9 @@ module.exports = {
       'vue$': 'vue/dist/vue.common.js',
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components')
+      'components': path.resolve(__dirname, '../src/components'),
+      'jquery.inputmask': path.resolve(__dirname, '../node_modules/jquery.inputmask/dist/inputmask/inputmask.js'),
+      'inputmask.dependencyLib': path.resolve(__dirname, '../node_modules/jquery.inputmask/extra/dependencyLibs/inputmask.dependencyLib.js')
     }
   },
   resolveLoader: {
