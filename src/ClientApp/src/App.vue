@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <h1>ConvCond Tracker</h1>
     <timer></timer>
     <metronome></metronome>
   </div>
