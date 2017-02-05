@@ -1,8 +1,7 @@
 <template>
-    <div class="section">
-        <p>Metronome</p>
-        <input type="number" :value="bpm" @change="updateBpm" min="10" max="480" />
-        <div class="btn" @click="toggleMetronome">{{ buttonText }}</div>
+    <div class="metronome">
+        <input type="number" class="metronome-bpm form-control" :value="bpm" @change="updateBpm" min="10" max="480" />
+        <button type="button" class="metronome-button btn btn-primary" @click="toggleMetronome">{{ buttonText }}</div>
     </div>
 </template>
 
@@ -75,3 +74,24 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+  .metronome{
+    display: flex;
+    /*max-width: 200px;*/
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+
+    &-bpm{
+      flex-basis: 50%;
+      font-size: 30px;
+      text-align: center;
+    }
+
+    &-button{
+      flex-basis: 50%;
+      cursor: pointer;
+    }
+  }
+</style>

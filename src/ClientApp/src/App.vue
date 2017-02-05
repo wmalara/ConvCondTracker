@@ -1,8 +1,10 @@
 <template>
-  <div id="app">
+  <div id="app" class="container">
     <h1>ConvCond Tracker</h1>
-    <timer></timer>
-    <metronome></metronome>
+    <div class="row">
+      <timer class="col-md-6"></timer>
+      <metronome class="col-md-6"></metronome>
+    </div>
   </div>
 </template>
 
@@ -19,26 +21,15 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+
 #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
+    margin-top: 20px;
 }
 
-.section {
-    padding: 15px;
-    border: 1px solid lightgray;
-}
-
-.btn {
-    display: inline-block;
-    padding: 10px 15px;
-    border-radius: 5px;
-    background-color: cornflowerblue;
-    cursor: pointer;
-}
 </style>
