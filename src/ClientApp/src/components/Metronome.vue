@@ -1,7 +1,8 @@
 <template>
     <div class="metronome">
         <input type="number" class="metronome-bpm form-control" :value="bpm" @change="updateBpm" min="10" max="480" />
-        <button type="button" class="metronome-button btn btn-primary" @click="toggleMetronome">{{ buttonText }}</div>
+        <button type="button" class="metronome-button btn btn-primary" @click="toggleMetronome">{{ buttonText }}</button>
+        <input type="number" class="form-control" :value="volume" @change="updateVolume" min="0" max="100" />
     </div>
 </template>
 
@@ -20,6 +21,7 @@ export default {
       timerWorker: null,
       isRunning: false,
       bpm: 60,
+      volume: 100,
     };
   },
   created() {
@@ -56,6 +58,10 @@ export default {
     },
     beep() {
       this.beeper.scheduleTone(beepToneFrequency, beepLengthMs);
+    },
+    updateVolume(e) {
+      this.volume = e.target.value;
+      this.beeper.setVolumePercent(this.volume);
     },
     setupWorker() {
       /*eslint-disable */
