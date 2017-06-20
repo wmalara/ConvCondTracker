@@ -12,9 +12,9 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs"
   },
   "dependencies": {
-    "bootstrap": "^4.0.0-",
     "jquery.inputmask": "^3.3.4",
-    "vue": "^2.1.0"
+    "vue": "^2.3.4",
+    "vuetify": "^0.12.7"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",

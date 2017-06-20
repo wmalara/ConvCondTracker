@@ -1,9 +1,14 @@
 <template>
-    <div class="metronome">
-        <input type="number" class="metronome-bpm form-control" :value="bpm" @change="updateBpm" min="10" max="480" />
-        <button type="button" class="metronome-button btn btn-primary" @click="toggleMetronome">{{ buttonText }}</button>
-        <input type="number" class="form-control" :value="volume" @change="updateVolume" min="0" max="100" />
-    </div>
+  <v-layout row class="metronome">
+    <v-flex xs6>
+      <v-text-field type="number" class="metronome-bpm form-control" v-model="bpm" min="10" max="480" />
+    </v-flex>
+    <v-flex xs6>
+      <v-btn primary light @click.native="toggleMetronome">
+        <v-icon light>{{ isRunning ? "stop" : "play_arrow" }}</v-icon>
+      </v-btn>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -15,23 +20,21 @@ const beepLengthMs = 50;
 
 export default {
   name: 'metronome',
+  props: {
+    volume: Number,
+  },
   data() {
     return {
       beeper: null,
       timerWorker: null,
       isRunning: false,
       bpm: 60,
-      volume: 100,
     };
   },
   created() {
     this.beeper = new Beeper();
     this.setupWorker();
-  },
-  computed: {
-    buttonText() {
-      return this.isRunning ? 'Stop' : 'Start';
-    },
+    this.updateVolume();
   },
   methods: {
     toggleMetronome() {
@@ -40,10 +43,6 @@ export default {
       } else {
         this.stop();
       }
-    },
-    updateBpm(e) {
-      this.bpm = e.target.value;
-      this.updateWorkerBpm();
     },
     updateWorkerBpm() {
       this.timerWorker.postMessage({ interval: minuteMs / this.bpm });
@@ -59,10 +58,6 @@ export default {
     beep() {
       this.beeper.scheduleTone(beepToneFrequency, beepLengthMs);
     },
-    updateVolume(e) {
-      this.volume = e.target.value;
-      this.beeper.setVolumePercent(this.volume);
-    },
     setupWorker() {
       /*eslint-disable */
       const Worker = require('worker!../common/tickworker.js');
@@ -77,27 +72,21 @@ export default {
 
       this.updateWorkerBpm();
     },
+    updateVolume() {
+      this.beeper.setVolumePercent(this.volume);
+    },
+  },
+  watch: {
+    bpm() {
+      this.updateWorkerBpm();
+    },
+    volume() {
+      this.updateVolume();
+    },
   },
 };
 </script>
 
 <style lang="scss">
-  .metronome{
-    display: flex;
-    /*max-width: 200px;*/
-    padding: 10px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
 
-    &-bpm{
-      flex-basis: 50%;
-      font-size: 30px;
-      text-align: center;
-    }
-
-    &-button{
-      flex-basis: 50%;
-      cursor: pointer;
-    }
-  }
 </style>

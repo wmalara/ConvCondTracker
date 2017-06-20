@@ -61,6 +61,10 @@ export default class TimerService {
     this.progressCallback = callback;
   }
 
+  setVolumePercent(volume) {
+    this.beeper.setVolumePercent(volume);
+  }
+
   playAlarm() {
     for (let i = 0; i < numberOfBeeps; i += 1) {
       this.beeper.scheduleTone(beepToneFrequency, beepLengthMs, i * beepStartIntervalMs);
