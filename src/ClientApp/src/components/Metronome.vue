@@ -13,6 +13,7 @@
 
 <script>
 import Beeper from '../common/beeper';
+import EventBus from '../common/eventBus';
 
 const minuteMs = 60000;
 const beepToneFrequency = 500;
@@ -35,6 +36,8 @@ export default {
     this.beeper = new Beeper();
     this.setupWorker();
     this.updateVolume();
+
+    EventBus.$on('keypress-space', () => this.toggleMetronome());
   },
   methods: {
     toggleMetronome() {

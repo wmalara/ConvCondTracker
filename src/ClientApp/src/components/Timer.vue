@@ -14,6 +14,7 @@
 <script>
 import TimerService from '../common/timerService';
 import TimeSpan from '../common/timespan';
+import EventBus from '../common/eventBus';
 
 export default {
   name: 'timer',
@@ -38,6 +39,8 @@ export default {
     this.timerService.setTime(this.timeValue);
     this.timerService.setProgressCallback(timeLeft => this.setTimeLeft(timeLeft));
     this.updateVolume();
+
+    EventBus.$on('keypress-b', () => this.toggleTimer());
   },
   computed: {
     timeInputValue() {
