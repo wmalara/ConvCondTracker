@@ -40,7 +40,7 @@ export default {
     this.timerService.setProgressCallback(timeLeft => this.setTimeLeft(timeLeft));
     this.updateVolume();
 
-    EventBus.$on('keypress-b', () => this.toggleTimer());
+    EventBus.$on('keypress-ctrl', () => this.toggleTimer());
   },
   computed: {
     timeInputValue() {
@@ -50,11 +50,18 @@ export default {
   methods: {
     toggleTimer() {
       if (!this.isRunning) {
-        this.timerService.start();
+        this.start();
       } else {
-        this.timerService.stop();
+        this.stop();
       }
-      this.isRunning = !this.isRunning;
+    },
+    start() {
+      this.timerService.start();
+      this.isRunning = true;
+    },
+    stop() {
+      this.timerService.stop();
+      this.isRunning = false;
     },
     updateTimeValue(e) {
       this.timeValue = TimeSpan.parse(e.target.value);

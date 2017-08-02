@@ -13,7 +13,7 @@ Vue.directive('inputmask', inputmask);
 function getKeyName(key) {
   switch (key) {
     case ' ': return 'space';
-    case 'b': return 'b';
+    case 'Control': return 'ctrl';
     default: return null;
   }
 }
@@ -28,6 +28,7 @@ new Vue({
     window.addEventListener('keydown', e => {
       const keyName = getKeyName(e.key);
       if (keyName) {
+        e.preventDefault();
         EventBus.$emit(`keypress-${keyName}`);
       }
     });
