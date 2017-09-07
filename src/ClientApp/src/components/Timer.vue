@@ -40,7 +40,7 @@ export default {
     this.timerService.setProgressCallback(timeLeft => this.setTimeLeft(timeLeft));
     this.updateVolume();
 
-    EventBus.$on('keypress-ctrl', () => this.toggleTimer());
+    EventBus.$on('keypress-b', () => this.toggleTimer());
   },
   computed: {
     timeInputValue() {

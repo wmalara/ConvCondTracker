@@ -13,7 +13,7 @@ Vue.directive('inputmask', inputmask);
 function getKeyName(key) {
   switch (key) {
     case ' ': return 'space';
-    case 'Control': return 'ctrl';
+    case 'b': return 'b';
     default: return null;
   }
 }
