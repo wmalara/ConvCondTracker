@@ -1,0 +1,2 @@
+!function(t){function e(n){if(a[n])return a[n].exports;var r=a[n]={exports:{},id:n,loaded:!1};return t[n].call(r.exports,r,r.exports,e),r.loaded=!0,r.exports}var a={};return e.m=t,e.c=a,e.p="",e(0)}([function(t,e){"use strict";var a=null,n=0;self.onmessage=function(t){"start"===t.data?(postMessage("tick"),a=setInterval(function(){postMessage("tick")},n)):t.data.interval?(n=t.data.interval,a&&(clearInterval(a),a=setInterval(function(){postMessage("tick")},n))):"stop"===t.data&&(clearInterval(a),a=null)}}]);
+//# sourceMappingURL=hash.worker.js.map
